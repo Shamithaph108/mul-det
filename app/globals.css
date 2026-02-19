@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Syne+Mono&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --green:      #00ff88;
+  --green-mid:  #00cc66;
+  --green-dim:  #00aa55;
+  --green-dark: #0a2a1a;
+  --red:        #ff3355;
+  --orange:     #ff9900;
+  --cyan:       #00e5ff;
+  --purple:     #cc44ff;
+  --bg:         #060a0d;
+  --bg2:        #080d10;
+  --bg3:        #0c1518;
+  --border:     #112018;
+  --border2:    #1a3028;
+  --text-dim:   #3a6a4a;
+  --text-mid:   #5a9a6a;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: #e0ffe8;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Monospace elements */
+code, .mono {
+  font-family: 'Syne Mono', monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); }
+::-webkit-scrollbar-thumb:hover { background: var(--green-dim); }
+
+/* Selection */
+::selection { background: var(--green); color: #000; }
+
+/* ── Animations ── */
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes glitch1 {
+  0%,90%,100% { clip-path: inset(0 0 95% 0); transform: translateX(0); }
+  91%          { clip-path: inset(20% 0 60% 0); transform: translateX(-4px); }
+  93%          { clip-path: inset(50% 0 30% 0); transform: translateX(4px); }
+  95%          { clip-path: inset(75% 0 10% 0); transform: translateX(-2px); }
+}
+
+@keyframes glitch2 {
+  0%,85%,100% { clip-path: inset(0 0 95% 0); transform: translateX(0); }
+  86%          { clip-path: inset(40% 0 40% 0); transform: translateX(3px); }
+  88%          { clip-path: inset(65% 0 15% 0); transform: translateX(-3px); }
+}
+
+@keyframes pulseRing {
+  0%   { transform: scale(1);   opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes progress {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+
+/* ── Utility classes ── */
+.animate-fade-up  { animation: fadeUp 0.5s ease-out both; }
+.animate-fade-in  { animation: fadeIn 0.3s ease-out both; }
+.animate-spin     { animation: spin 1s linear infinite; }
+.animate-blink    { animation: blink 1s step-end infinite; }
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
