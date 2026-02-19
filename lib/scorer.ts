@@ -562,6 +562,7 @@ export function buildDetectionResult(
 
   const collapsed = [...ringsByKey.values()];
 
+  // Sort rings by risk_score descending, then by member count descending
   collapsed.sort(
     (a, b) =>
       b.risk_score - a.risk_score ||
@@ -569,15 +570,28 @@ export function buildDetectionResult(
       a.key.localeCompare(b.key)
   );
 
+  // Pattern priority for single pattern_type (RIFT spec: must be one keyword only)
+  const patternPriority: Record<string, number> = {
+    "cycle": 4,
+    "fan_in": 3,
+    "fan_out": 3,
+    "shell_chain": 2,
+  };
+
   const fraudRings: FraudRing[] = collapsed.map(
-    (ring, i) => ({
-      ring_id: `RING_${String(i + 1).padStart(3, "0")}`,
-      member_accounts: ring.member_accounts,
-      pattern_type: [...ring.pattern_types]
-        .sort((a, b) => a.localeCompare(b))
-        .join("+"),
-      risk_score: ring.risk_score,
-    })
+    (ring, i) => {
+      // Get the highest priority pattern type (single keyword per RIFT spec)
+      const primaryPattern = [...ring.pattern_types].sort(
+        (a, b) => (patternPriority[b] || 0) - (patternPriority[a] || 0)
+      )[0] || "cycle";
+
+      return {
+        ring_id: `RING_${String(i + 1).padStart(3, "0")}`,
+        member_accounts: ring.member_accounts,
+        pattern_type: primaryPattern,
+        risk_score: ring.risk_score,
+      };
+    }
   );
 
   const ringLookup = new Map<string, FraudRing>();
