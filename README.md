@@ -99,12 +99,12 @@ CSV Upload -> /api/analyze -> parseCSV -> buildGraph
 
 ## Suspicion Score Methodology
 Base additive scoring (capped at 100):
-- `cycle_length_*`: +40
-- `fan_out`: +25
-- `fan_in`: +25
-- `shell_chain`: +20
+- `cycle_length_*`: +45
+- `fan_out`: +35
+- `fan_in`: +35
+- `shell_chain`: +30
 - `high_velocity`: +10
-- transaction volume bonus: +5 / +10
+- transaction volume bonus: +4 / +8
 - legitimate-pattern penalty: -40
 
 Additional risk calibration:
@@ -155,11 +155,8 @@ npm start
 4. Very large visual graphs are node-limited for UI performance.
 
 ## Team Members
-- [Name] - Full-stack / Graph Algorithms
-- [Name] - Frontend / Visualization
+- Shamitha P H
+- Sakshi Talekar
+- Shubhamangala
+- Varsha K
 
-## Submission Checklist
-- Live deployed web app URL
-- Public GitHub repository URL
-- Public LinkedIn demo video link (2-3 minutes, with required hashtags)
-- README with all mandatory sections
