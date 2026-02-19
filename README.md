@@ -4,7 +4,7 @@
 Graph-Based Financial Crime Detection Engine for the Money Muling Detection Challenge.
 
 ## Live Demo URL
-
+https://mul-det.vercel.app/
 
 ## Project Title
 - Financial Forensics Engine
