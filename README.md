@@ -4,7 +4,7 @@
 Graph-Based Financial Crime Detection Engine for the Money Muling Detection Challenge.
 
 ## Live Demo URL
-- `https://your-live-app-url.example.com`
+
 
 ## Project Title
 - Financial Forensics Engine
